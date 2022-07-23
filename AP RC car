@@ -1,0 +1,49 @@
+# RC-CAR-inbuilt-Self-Manual-controll
+i've been working on a program to self and manually controll the Rc car with ultra sonic sensors onboard 
+well, here's my program 
+i've tested with Arduino it's working great with 4WD 
+
+Code
+#include <Servo.h>
+const int servo1 = 11;       // first servo
+Servo myservo1;  // create servo object to control a servo
+const int esc = 12;       // first servo
+Servo myesc;  // create servo object to control a servo
+const int buttonPin = 13;     // the number of the pushbutton pin
+int buttonState = 0;
+const int ledpin = 2; 
+char data = 0; 
+int driverState = 0;
+int servoval = 100;
+
+#define trigD1 9
+#define echoD1 8
+#define trigD2 7
+#define echoD2 6
+#define trigD3 5
+#define echoD3 4
+#define trigD4 3
+#define echoD4 10
+
+long duration, distance, distance1, distance2, distance3, distance4, difference, absDiff;
+
+void setup() {
+  // put your setup code here, to run once:
+
+myservo1.attach(servo1);  // attaches the servo
+myesc.attach(esc);  // attaches the servo
+pinMode(buttonPin, INPUT);
+pinMode(ledpin, OUTPUT);
+ pinMode(trigD1, OUTPUT);
+  pinMode(echoD1, INPUT);
+   pinMode(trigD2, OUTPUT);
+  pinMode(echoD2, INPUT);
+   pinMode(trigD3, OUTPUT);
+  pinMode(echoD3, INPUT);
+  pinMode(trigD4, OUTPUT);
+  pinMode(echoD4, INPUT);
+
+myesc.write(80);
+myservo1.write(100);
+Serial.begin(9600);
+}
